@@ -1,4 +1,3 @@
-// app/api/save-name/route.ts
 import { supabase } from "../../../lib/client";
 import { NextResponse } from "next/server";
 
@@ -14,7 +13,8 @@ export async function POST(request: Request) {
     const { data, error } = await supabase.from("names").insert([{ name }]);
 
     if (error) {
-      throw error;
+      console.error("Error inserting name:", error);
+      return NextResponse.json({ error: "Failed to insert name" }, { status: 500 });
     }
 
     return NextResponse.json({ message: "Name saved successfully!", data });
