@@ -25,7 +25,8 @@ export default function NameForm() {
       } else {
         setMessage(data.error);
       }
-    } catch (_) {
+    } catch (err) {
+      console.error("Error occured",err)
       setMessage("An error occurred.");
     }
   };
